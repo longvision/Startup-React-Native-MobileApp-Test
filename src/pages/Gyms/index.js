@@ -5,12 +5,24 @@ import {
   Button,
   View,
   Image,
+  FlatList,
   StyleSheet,
   Dimensions,
   ImageBackground,
   StatusBar
 } from 'react-native';
 
+import api from '~/services/api';
+
+import List from '~/pages/List';
+
+const style = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    flex: 1,
+    paddingHorizontal: 20
+  }
+});
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
@@ -53,10 +65,22 @@ const styles = StyleSheet.create({
 
 // import { Container } from './styles';
 
-export default class Main extends Component {
-  handlePress = () => {};
+export default class Gyms extends Component {
+  state = {
+    gyms: []
+  };
+  componentDidMount = async () => {
+    const response = await api.get(`/gyms/`);
+    this.setState({
+      gyms: response.data
+    });
+  };
+
   render() {
     const { navigate } = this.props.navigation;
+
+    const { gyms } = this.state;
+    console.log(this.state.gyms);
     return (
       <ImageBackground
         source={{
@@ -67,25 +91,10 @@ export default class Main extends Component {
         resizeMode="cover"
       >
         <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
-        <Image
-          source={{
-            uri:
-              'https://dtda4cv2md3ne.cloudfront.net/image/filename/281513/Novo_logo_GP.png'
-          }}
-          style={styles.logo}
-          resizeMode="contain"
-        />
-        <Text style={styles.welcome}>Bem-vindo ao GympassApp!</Text>
-        <Text style={styles.subtitle}>
-          Selecione a atividade que você quer praticar hoje.
-        </Text>
-        <View style={styles.button}>
-          <Button
-            title="Começar"
-            color="#48285b"
-            onPress={() => navigate('Gyms')}
-          />
-        </View>
+
+        <Text style={styles.welcome}>Selecione onde quer treinar hoje:</Text>
+
+        <FlatList data={gyms} renderItem={({ item }) => <List item={item} />} />
       </ImageBackground>
     );
   }
