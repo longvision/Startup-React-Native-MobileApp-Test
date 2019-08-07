@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
 import {
   Text,
   Button,
@@ -9,26 +11,21 @@ import {
   StyleSheet,
   Dimensions,
   ImageBackground,
-  StatusBar
+  StatusBar,
+  TouchableOpacity
 } from 'react-native';
 
 import api from '~/services/api';
 
 import List from '~/pages/List';
 
-const style = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    paddingHorizontal: 20
-  }
-});
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     flex: 1,
     paddingHorizontal: 20
   },
+  lista: { marginTop: 20 },
   button: {
     height: 44,
     width: 120,
@@ -59,7 +56,8 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 22,
     fontWeight: 'bold',
-    textAlign: 'center'
+    textAlign: 'center',
+    marginTop: 15
   }
 });
 
@@ -77,8 +75,6 @@ export default class Gyms extends Component {
   };
 
   render() {
-    const { navigate } = this.props.navigation;
-
     const { gyms } = this.state;
     console.log(this.state.gyms);
     return (
@@ -92,10 +88,29 @@ export default class Gyms extends Component {
       >
         <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
 
-        <Text style={styles.welcome}>Selecione onde quer treinar hoje:</Text>
+        <Text style={styles.welcome}>Selecione onde deseja treinar hoje:</Text>
 
-        <FlatList data={gyms} renderItem={({ item }) => <List item={item} />} />
+        <FlatList
+          style={styles.lista}
+          data={gyms}
+          renderItem={({ item }) => (
+            <List item={item} navigation={this.props.navigation} />
+          )}
+        />
       </ImageBackground>
     );
   }
 }
+
+Gyms.navigationOptions = ({ navigation }) => ({
+  title: 'Selecione a academia',
+  headerLeft: () => (
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate('Main');
+      }}
+    >
+      <Icon name="chevron-left" size={20} color="#fff" />
+    </TouchableOpacity>
+  )
+});
