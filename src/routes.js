@@ -16,17 +16,11 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 const Routes = createAppContainer(
   createSwitchNavigator({
     Main: createSwitchNavigator({
-      Main,
-      Gyms
-    }),
-    Activities: createSwitchNavigator({
-      List,
-      Activities
+      Main
     }),
     App: createBottomTabNavigator(
       {
         Gyms,
-        // Find,
         Activities: {
           screen: createStackNavigator(
             {
@@ -48,6 +42,7 @@ const Routes = createAppContainer(
             tabBarIcon: <Icon name="date-range" size={20} color="#fee166" />
           }
         }
+        // Maps
       },
       {
         tabBarOptions: {

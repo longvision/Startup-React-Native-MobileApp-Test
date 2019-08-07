@@ -102,15 +102,20 @@ export default class Gyms extends Component {
   }
 }
 
-Gyms.navigationOptions = ({ navigation }) => ({
-  title: 'Selecione a academia',
-  headerLeft: () => (
-    <TouchableOpacity
-      onPress={() => {
-        navigation.navigate('Main');
-      }}
-    >
-      <Icon name="chevron-left" size={20} color="#fff" />
-    </TouchableOpacity>
-  )
-});
+Gyms.navigationOptions = {
+  tabBarLabel: 'Gyms',
+  tabBarIcon: ({ tintColor }) => {
+    <Icon name="chevron-left" size={20} color={tintColor} />;
+  }
+};
+
+// title: 'Selecione a academia',
+//   headerLeft: () => (
+//     <TouchableOpacity
+//       onPress={() => {
+//         navigation.navigate('Main');
+//       }}
+//     >
+//       <Icon name="chevron-left" size={20} color="#fff" />
+//     </TouchableOpacity>
+//   )
