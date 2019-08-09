@@ -15,10 +15,23 @@ import { AirbnbRating } from 'react-native-ratings';
 
 // import { Container } from './styles';
 
-export default class List extends Component {
+export default class GymList extends Component {
+  state = {
+    gyms: []
+  };
+
+  componentDidMount() {}
+  handleNavigate = item => {
+    const { navigation } = this.props;
+
+    navigation.navigate('Activities', {
+      item: item
+    });
+  };
   render() {
-    const { item, navigation } = this.props;
-    // const { navigate } = this.props.navigation;
+    const { item } = this.props;
+
+    console.log(item);
     return (
       <View style={styles.container}>
         <View style={styles.card}>
@@ -43,7 +56,7 @@ export default class List extends Component {
           </View>
           <Button
             title="Atividades"
-            onPress={() => navigation.navigate('Activities')}
+            onPress={() => this.handleNavigate(item)}
           />
         </View>
       </View>
@@ -56,7 +69,7 @@ export default class List extends Component {
 // const mapDispatchToProps = dispatch =>
 //   bindActionCreators(Actions, dispatch);
 
-// export default connect()(List);
+// export default connect()(GymList);
 // mapStateToProps
 // mapDispatchToProps
 

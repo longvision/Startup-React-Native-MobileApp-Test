@@ -15,9 +15,53 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+// import * as GymsActions from '../../store/actions/activities';
+
+import GymList from '~/components/GymList';
 import api from '~/services/api';
 
-import List from '~/pages/List';
+export default class Gyms extends Component {
+  state = {
+    gyms: []
+  };
+
+  async componentDidMount() {
+    const response = await api.get('/gyms/');
+    this.setState({ gyms: response.data });
+    console.log(gyms);
+  }
+
+  render() {
+    const { gyms } = this.state;
+    console.log(this.state.gyms);
+    return (
+      <ImageBackground
+        source={{
+          uri:
+            'https://s3-sa-east-1.amazonaws.com/rocketseat-cdn/background.png'
+        }}
+        style={styles.container}
+        resizeMode="cover"
+      >
+        <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
+
+        <Text style={styles.welcome}>Selecione onde deseja treinar hoje:</Text>
+
+        <FlatList
+          style={styles.lista}
+          data={gyms}
+          keyExtractor={item => String(item.id)}
+          renderItem={({ item }) => (
+            <GymList item={item} navigation={this.props.navigation} />
+          )}
+        />
+      </ImageBackground>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -60,62 +104,3 @@ const styles = StyleSheet.create({
     marginTop: 15
   }
 });
-
-// import { Container } from './styles';
-
-export default class Gyms extends Component {
-  state = {
-    gyms: []
-  };
-  componentDidMount = async () => {
-    const response = await api.get(`/gyms/`);
-    this.setState({
-      gyms: response.data
-    });
-  };
-
-  render() {
-    const { gyms } = this.state;
-    console.log(this.state.gyms);
-    return (
-      <ImageBackground
-        source={{
-          uri:
-            'https://s3-sa-east-1.amazonaws.com/rocketseat-cdn/background.png'
-        }}
-        style={styles.container}
-        resizeMode="cover"
-      >
-        <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
-
-        <Text style={styles.welcome}>Selecione onde deseja treinar hoje:</Text>
-
-        <FlatList
-          style={styles.lista}
-          data={gyms}
-          renderItem={({ item }) => (
-            <List item={item} navigation={this.props.navigation} />
-          )}
-        />
-      </ImageBackground>
-    );
-  }
-}
-
-Gyms.navigationOptions = {
-  tabBarLabel: 'Gyms',
-  tabBarIcon: ({ tintColor }) => {
-    <Icon name="chevron-left" size={20} color={tintColor} />;
-  }
-};
-
-// title: 'Selecione a academia',
-//   headerLeft: () => (
-//     <TouchableOpacity
-//       onPress={() => {
-//         navigation.navigate('Main');
-//       }}
-//     >
-//       <Icon name="chevron-left" size={20} color="#fff" />
-//     </TouchableOpacity>
-//   )
