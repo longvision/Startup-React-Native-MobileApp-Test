@@ -17,7 +17,7 @@ const MainScreenNavigator = createStackNavigator(
     }
   },
   {
-    cardStyle: { backgroundColor: '#c1c1c1' }
+    cardStyle: { backgroundColor: '#48285b' }
   }
 );
 

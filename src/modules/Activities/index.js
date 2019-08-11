@@ -19,7 +19,7 @@ class Activities extends Component {
 
   handleNavigate = activity => {
     const { toggleActivity, navigation } = this.props;
-    navigation.navigate('Confirmation');
+    navigation.navigate('Confirmation', { navigation });
     toggleActivity(activity);
     console.log(activity);
   };

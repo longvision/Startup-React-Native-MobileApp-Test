@@ -51,12 +51,14 @@ const tabNavigator = createMaterialBottomTabNavigator(
     }
   },
   {
-    shifting: false,
+    initialRouteName: 'Gyms',
+    shifting: true,
     activeColor: '#fee166',
     inactiveColor: '#c4c4c4',
     barStyle: {
       backgroundColor: '#48285b'
-    }
+    },
+    tabBarColor: '#fee166'
   }
 );
 

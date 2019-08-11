@@ -10,6 +10,14 @@ import {
 } from 'react-native';
 
 export default class Main extends Component {
+  static navigationOptions = {
+    title: 'Main',
+    headerStyle: {
+      backgroundColor: '#48285b',
+      marginTop: 0
+    },
+    headerTintColor: '#fff'
+  };
   handleStart = async () => {
     const { navigate } = this.props.navigation;
     navigate('Gyms');

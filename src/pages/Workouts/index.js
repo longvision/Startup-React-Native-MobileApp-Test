@@ -6,7 +6,7 @@ import { View } from 'react-native';
 
 export default class Workouts extends Component {
   static navigationOptions = {
-    title: 'Selecione a atividade desejada',
+    title: 'Minhas atividades',
     headerStyle: {
       backgroundColor: '#48285b',
       marginTop: 0
