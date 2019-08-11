@@ -9,29 +9,27 @@ import {
 } from 'react-native';
 
 import { AirbnbRating } from 'react-native-ratings';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import * as GymsActions from '~/store/actions/gym';
 
 // import { bindActionCreators } from 'redux';
 // import { connect } from 'react-redux';
 
 // import { Container } from './styles';
 
-export default class GymList extends Component {
-  state = {
-    gyms: []
-  };
-
+class GymList extends Component {
   componentDidMount() {}
   handleNavigate = item => {
-    const { navigation } = this.props;
+    const { navigation, toggleGym } = this.props;
 
-    navigation.navigate('Activities', {
-      item: item
-    });
+    navigation.navigate('Activities');
+    toggleGym(item);
   };
   render() {
     const { item } = this.props;
 
-    console.log(item);
     return (
       <View style={styles.container}>
         <View style={styles.card}>
@@ -56,6 +54,7 @@ export default class GymList extends Component {
           </View>
           <Button
             title="Atividades"
+            color="#48285b"
             onPress={() => this.handleNavigate(item)}
           />
         </View>
@@ -64,14 +63,15 @@ export default class GymList extends Component {
   }
 }
 
-// const mapStateToProps = state => ({});
+const mapStateToProps = state => ({});
 
-// const mapDispatchToProps = dispatch =>
-//   bindActionCreators(Actions, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(GymsActions, dispatch);
 
-// export default connect()(GymList);
-// mapStateToProps
-// mapDispatchToProps
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GymList);
 
 const styles = StyleSheet.create({
   logo: {

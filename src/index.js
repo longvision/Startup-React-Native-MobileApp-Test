@@ -3,6 +3,7 @@ import React from 'react';
 import '~/config/ReactotronConfig';
 
 import { Provider } from 'react-redux';
+// import { Root } from 'native-base';
 import store from './store';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import RootNavigation from '~/navigation/RootNavigation';

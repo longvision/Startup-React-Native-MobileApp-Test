@@ -1,24 +1,15 @@
 import React, { Component, useEffect, useState } from 'react';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  ImageBackground,
-  FlatList,
-  Button,
-  Dimensions
-} from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { AirbnbRating } from 'react-native-ratings';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as ActivitiesActions from '~/store/actions/activity';
 
-import api from '~/services/api';
-
-// import { Container } from './styles';
-
-export default class Activities extends Component {
+class Activities extends Component {
   static navigationOptions = {
-    title: 'Activities',
+    title: 'Selecione a atividade desejada',
     headerStyle: {
       backgroundColor: '#48285b',
       marginTop: 0
@@ -26,74 +17,77 @@ export default class Activities extends Component {
     headerTintColor: '#fff'
   };
 
+  handleNavigate = activity => {
+    const { toggleActivity, navigation } = this.props;
+    navigation.navigate('Confirmation');
+    toggleActivity(activity);
+    console.log(activity);
+  };
   render() {
-    const { item } = this.props.navigation.state.params;
-
+    const { activities } = this.props;
     return (
-      <ImageBackground
-        source={{
-          uri:
-            'https://s3-sa-east-1.amazonaws.com/rocketseat-cdn/background.png'
-        }}
-        style={styles.container}
-        resizeMode="cover"
-      >
-        <View>
-          {item.activities.map(i => (
-            <View key={i.id}>
-              <Text style={styles.title}>{i.title}</Text>
-            </View>
-          ))}
-        </View>
-      </ImageBackground>
+      <View style={styles.container}>
+        {activities.map(activity => (
+          <View key={activity.id} style={styles.card}>
+            <Text style={styles.title}>{activity.title}</Text>
+            <TouchableOpacity
+              style={styles.icon}
+              onPress={() => this.handleNavigate(activity)}
+            >
+              <Icon name="event-busy" size={20} color="#f64c75" />
+            </TouchableOpacity>
+          </View>
+        ))}
+      </View>
     );
   }
 }
 
-// const mapStateToProps = state => ({
-//   activities:state.activities
-// });
+const mapStateToProps = state => ({
+  activities: state.gym.selectedGym.activities
+});
 
-// const mapDispatchToProps = dispatch =>
-//   bindActionCreators(Actions, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(ActivitiesActions, dispatch);
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Activities);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Activities);
 
 const styles = StyleSheet.create({
-  logo: {
-    height: Dimensions.get('window').height * 0.2,
-    marginTop: 10,
-    marginBottom: 10,
-    width: Dimensions.get('window').height * 0.2 * (1950 / 662)
-  },
-  image: {
-    maxWidth: 60
-  },
   container: {
     alignItems: 'center',
     flex: 1,
     paddingHorizontal: 20
   },
-  rating: {
-    paddingBottom: 15
+  header: {
+    color: '#fff',
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'center'
+  },
+  icon: {
+    alignItems: 'flex-end'
   },
   card: {
-    alignItems: 'center',
-    flex: 1,
+    padding: 20,
+    marginTop: 30,
+    margin: 10,
+    borderRadius: 4,
     backgroundColor: '#fff',
-    marginTop: 15,
-    padding: 15,
-    width: 350,
     display: 'flex',
-    borderRadius: 12.5
+    height: 100,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: 320
   },
-  address: {
-    paddingTop: 15,
-    textAlign: 'center'
-  },
+
   title: {
     fontWeight: '500',
-    fontSize: 22,
-    textAlign: 'center'
+    fontSize: 20,
+    textAlign: 'center',
+    alignItems: 'flex-start'
   }
 });

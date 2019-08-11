@@ -2,8 +2,10 @@ import { createStackNavigator } from 'react-navigation';
 
 import Gyms from '~/pages/Gyms';
 import Activities from '~/modules/Activities';
-import Confirm from '~/modules/Confirm';
+// import ActivitiesList from '~/components/ActivitiesList';
+import Confirmation from '~/modules/Confirmation';
 import GymList from '~/components/GymList';
+import Workouts from '~/pages/Workouts';
 
 const GymsScreenNavigator = createStackNavigator(
   {
@@ -13,14 +15,14 @@ const GymsScreenNavigator = createStackNavigator(
     Activities: {
       screen: Activities
     },
-    Confirm: {
-      screen: Confirm
+    Confirmation: {
+      screen: Confirmation
     },
     GymList: {
       screen: GymList
     },
-    Confirm: {
-      screen: Confirm
+    Workouts: {
+      screen: Workouts
     }
   },
   {

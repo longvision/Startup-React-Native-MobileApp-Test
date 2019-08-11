@@ -4,31 +4,31 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {
   Text,
-  Button,
-  View,
-  Image,
   FlatList,
   StyleSheet,
   Dimensions,
-  ImageBackground,
-  StatusBar,
-  TouchableOpacity
+  View,
+  StatusBar
 } from 'react-native';
-
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
-// import * as GymsActions from '../../store/actions/activities';
 
 import GymList from '~/components/GymList';
 import api from '~/services/api';
 
 export default class Gyms extends Component {
+  static navigationOptions = {
+    title: 'Academias',
+    headerStyle: {
+      backgroundColor: '#48285b',
+      marginTop: 0
+    },
+    headerTintColor: '#fff'
+  };
   state = {
     gyms: []
   };
 
   async componentDidMount() {
+    const { gyms } = this.state;
     const response = await api.get('/gyms/');
     this.setState({ gyms: response.data });
     console.log(gyms);
@@ -38,18 +38,8 @@ export default class Gyms extends Component {
     const { gyms } = this.state;
     console.log(this.state.gyms);
     return (
-      <ImageBackground
-        source={{
-          uri:
-            'https://s3-sa-east-1.amazonaws.com/rocketseat-cdn/background.png'
-        }}
-        style={styles.container}
-        resizeMode="cover"
-      >
+      <View>
         <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
-
-        <Text style={styles.welcome}>Selecione onde deseja treinar hoje:</Text>
-
         <FlatList
           style={styles.lista}
           data={gyms}
@@ -58,7 +48,7 @@ export default class Gyms extends Component {
             <GymList item={item} navigation={this.props.navigation} />
           )}
         />
-      </ImageBackground>
+      </View>
     );
   }
 }

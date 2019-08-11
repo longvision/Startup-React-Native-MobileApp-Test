@@ -2,21 +2,12 @@ import React, { Component } from 'react';
 
 import {
   Text,
-  Button,
-  View,
   Image,
   StyleSheet,
   Dimensions,
-  ImageBackground,
+  View,
   StatusBar
 } from 'react-native';
-
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
-// import * as GymsActions from '../../store/actions/gyms';
-
-// import { Container } from './styles';
 
 export default class Main extends Component {
   handleStart = async () => {
@@ -25,14 +16,7 @@ export default class Main extends Component {
   };
   render() {
     return (
-      <ImageBackground
-        source={{
-          uri:
-            'https://s3-sa-east-1.amazonaws.com/rocketseat-cdn/background.png'
-        }}
-        style={styles.container}
-        resizeMode="cover"
-      >
+      <View>
         <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
         <Image
           source={{
@@ -50,7 +34,7 @@ export default class Main extends Component {
         <Text style={styles.subtitle}>
           Esse App foi desenvolvido por Ricardo Naoki Horiguchi.
         </Text>
-      </ImageBackground>
+      </View>
     );
   }
 }
