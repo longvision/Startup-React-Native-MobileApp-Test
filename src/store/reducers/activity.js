@@ -14,7 +14,7 @@ export default function activity(state = INITIAL_STATE, action) {
     case TOGGLE_ACTIVITY:
       return {
         ...state,
-        selectedActivity: action.payload.activity
+        selectedActivity: action.payload.selectedActivity
       };
 
     case ADD_ACTIVITY: {
@@ -25,7 +25,8 @@ export default function activity(state = INITIAL_STATE, action) {
           {
             activity: {
               description: action.payload.activity,
-              checkin: action.payload.response
+              checkinStatus: action.payload.status,
+              checkinDate: action.payload.date
             },
             gym: action.payload.gym
           }

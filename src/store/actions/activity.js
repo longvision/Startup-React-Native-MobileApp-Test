@@ -8,14 +8,14 @@ export const ADD_ACTIVITY = 'ADD_ACTIVITY';
 
 // Action creators
 
-export const toggleActivity = activity => ({
+export const toggleActivity = selectedActivity => ({
   type: 'TOGGLE_ACTIVITY',
-  payload: { activity }
+  payload: { selectedActivity }
 });
 
-export const addActivity = (activity, gym, response) => ({
+export const addActivity = (activity, gym, status, date) => ({
   type: 'ADD_ACTIVITY',
-  payload: { activity, gym, response }
+  payload: { activity, gym, status, date }
 });
 
 export const loadActivityRequest = activity => ({

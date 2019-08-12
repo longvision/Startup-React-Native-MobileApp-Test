@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -14,44 +14,38 @@ import {
 import GymList from '~/components/GymList';
 import api from '~/services/api';
 
-export default class Gyms extends Component {
-  static navigationOptions = {
-    title: 'Academias',
-    headerStyle: {
-      backgroundColor: '#48285b',
-      marginTop: 0
-    },
-    headerTintColor: '#fff'
-  };
-  state = {
-    gyms: []
-  };
+export default function Gyms({ navigation }) {
+  const [gyms, setGyms] = useState([]);
 
-  componentDidMount = async () => {
-    const { gyms } = this.state;
-    const response = await api.get('/gyms/');
-    this.setState({ gyms: response.data });
-    console.log(gyms);
-  };
+  useEffect(() => {
+    const response = api.get('/gyms/');
+    setGyms(response.data);
+    console.tron.log(response.data);
+  }, []);
 
-  render() {
-    const { gyms } = this.state;
-    console.log(this.state.gyms);
-    return (
-      <View style={styles.container}>
-        <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
-        <FlatList
-          style={styles.lista}
-          data={gyms}
-          keyExtractor={item => String(item.id)}
-          renderItem={({ item }) => (
-            <GymList item={item} navigation={this.props.navigation} />
-          )}
-        />
-      </View>
-    );
-  }
+  return (
+    <View style={styles.container}>
+      <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
+      <FlatList
+        style={styles.lista}
+        data={gyms}
+        keyExtractor={item => String(item.id)}
+        renderItem={({ item }) => (
+          <GymList item={item} navigation={navigation} />
+        )}
+      />
+    </View>
+  );
 }
+
+Gyms.navigationOptions = {
+  title: 'Academias',
+  headerStyle: {
+    backgroundColor: '#48285b',
+    marginTop: 0
+  },
+  headerTintColor: '#fff'
+};
 
 const styles = StyleSheet.create({
   container: {

@@ -1,6 +1,7 @@
 import { createStackNavigator } from 'react-navigation';
 
 import Workouts from '~/pages/Workouts';
+import Gyms from '~/pages/Gyms';
 
 const WorkoutsScreenNavigator = createStackNavigator(
   {

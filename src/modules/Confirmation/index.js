@@ -24,11 +24,10 @@ export default function Confirm({ navigation }) {
     () => format(new Date(response.checkinDate), 'MM/DD/YYYY, hh:mm'),
     [response.checkinDate]
   );
-  //TODO: fazer com que ao clicar em 'Confirmar' a response do POST também seja gravado no reducers.
+
   const handleConfirm = useCallback(() => {
     setConfirm(true);
-    dispatch(ActivityActions.addActivity(activity, gym, response));
-  }, [gym, activity, response.checkinDate, response.checkinStatus]);
+  }, [confirm]);
 
   const handleOk = useCallback(() => {
     navigation.navigate('Workouts');
@@ -41,13 +40,16 @@ export default function Confirm({ navigation }) {
           gymId: gym.id,
           activityId: activity.id
         })
-        .then(res => {
-          console.log(res);
-          console.log(res.data);
-          // setDate(res.data.checkinDate);
-          // setStatus(res.data.checkinStatus);
+        .then(async res => {
           setResponse(res.data);
-          // dispatch(ActivityActions.checkin(activity, gym, response));
+          dispatch(
+            ActivityActions.addActivity(
+              activity,
+              gym,
+              res.data.checkinStatus,
+              res.data.checkinDate
+            )
+          );
         });
     }
   }, [confirm]);

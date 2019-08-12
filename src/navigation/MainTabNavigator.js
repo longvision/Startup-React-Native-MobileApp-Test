@@ -12,6 +12,7 @@ const tabNavigator = createMaterialBottomTabNavigator(
   {
     Gyms: {
       screen: GymsScreenNavigator,
+
       navigationOptions: {
         title: 'Gyms',
         tabBarIcon: ({ focused }) => (
@@ -38,6 +39,7 @@ const tabNavigator = createMaterialBottomTabNavigator(
     },
     Main: {
       screen: MainScreenNavigator,
+
       navigationOptions: {
         title: 'Main',
         tabBarIcon: ({ focused }) => (
@@ -51,7 +53,8 @@ const tabNavigator = createMaterialBottomTabNavigator(
     }
   },
   {
-    shifting: false,
+    resetOnBlur: true,
+    keyboardHidesTabBar: true,
     activeColor: '#fee166',
     inactiveColor: '#c4c4c4',
     barStyle: {

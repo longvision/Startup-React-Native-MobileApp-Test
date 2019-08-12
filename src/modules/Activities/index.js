@@ -17,11 +17,10 @@ class Activities extends Component {
     headerTintColor: '#fff'
   };
 
-  handleNavigate = activity => {
+  handleNavigate = selectedActivity => {
     const { toggleActivity, navigation } = this.props;
     navigation.navigate('Confirmation', { navigation });
-    toggleActivity(activity);
-    console.log(activity);
+    toggleActivity(selectedActivity);
   };
   render() {
     const { activities } = this.props;

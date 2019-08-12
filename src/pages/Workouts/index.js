@@ -2,8 +2,8 @@ import React from 'react';
 
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 
-import { useSelector } from 'redux';
-// import { Container } from './styles';
+import { useSelector } from 'react-redux';
+import Workout from '~/modules/Workout';
 
 export default function Workouts() {
   const history = useSelector(state => state.activity.history);
@@ -12,10 +12,10 @@ export default function Workouts() {
     <View style={styles.container}>
       <Text style={styles.title}>Agendamentos</Text>
       <FlatList
-        styles={styles.list}
+        style={styles.list}
         data={history}
         keyExtractor={item => String(item)}
-        render={({ item }) => <Activities activities={item} />}
+        renderItem={({ item }) => <Workout data={item} />}
       />
     </View>
   );
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 0
   },
   list: {
-    marginTop: 20,
+    marginTop: 15,
     padding: 30
   },
   title: {
