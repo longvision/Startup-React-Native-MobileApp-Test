@@ -3,7 +3,7 @@ import {
   LOAD_ACTIVITY_SUCCESS,
   TOGGLE_ACTIVITY,
   ADD_ACTIVITY
-} from '../actions/activity';
+} from '~/store/actions/activity';
 
 const INITIAL_STATE = {
   history: []

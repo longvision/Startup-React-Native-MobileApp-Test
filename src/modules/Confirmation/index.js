@@ -1,17 +1,13 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { View, StyleSheet, Image, Button, Text } from 'react-native';
-
-import { parseISO, format, setHours } from 'date-fns';
-import pt from 'date-fns/locale/pt';
+import { format } from 'date-fns';
 
 import api from '~/services/api';
-
 import * as ActivityActions from '~/store/actions/activity';
-import { BottomNavigation } from 'react-native-paper';
-import reducers from '~/store/reducers';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function Confirm({ navigation }) {
+export default function Confirmation({ navigation }) {
   const gym = useSelector(state => state.gym.selectedGym);
   const activity = useSelector(state => state.activity.selectedActivity);
 
@@ -58,32 +54,36 @@ export default function Confirm({ navigation }) {
     <View style={styles.container}>
       <Image style={styles.logo} source={{ uri: gym.logo }} />
       <Text style={styles.title}>{activity.title}</Text>
-
       <Text style={styles.checkin}>{response.checkinStatus}</Text>
       {response.checkinDate === undefined ? null : (
         <Text style={styles.checkin}>{dateFormatted}</Text>
       )}
+
       {!confirm ? (
-        <Button
-          onPress={handleConfirm}
-          style={styles.button}
-          title="Confirmar agendamento"
-        />
+        <View style={styles.button}>
+          <Button
+            onPress={handleConfirm}
+            color="#fee166"
+            title="Fazer checkin"
+          />
+        </View>
       ) : (
-        <Button onPress={handleOk} style={styles.button} title="OK" />
+        <View style={styles.button}>
+          <Button onPress={handleOk} color="#fee166" title="OK" />
+        </View>
       )}
     </View>
   );
 }
 
-// Confirmation.navigationOptions = ({ navigation }) => ({
-//   title: 'Confirmar',
-//   headerStyle: {
-//     backgroundColor: '#48285b',
-//     marginTop: 0
-//   },
-//   headerTintColor: '#fff'
-// });
+Confirmation.navigationOptions = () => ({
+  title: 'Confirmar',
+  headerStyle: {
+    backgroundColor: '#48285b',
+    marginTop: 0
+  },
+  headerTintColor: '#fff'
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -109,8 +109,10 @@ const styles = StyleSheet.create({
     color: '#fee166'
   },
   button: {
-    alignSelf: 'stretch',
-    marginTop: 25,
-    color: '#FFF'
+    alignSelf: 'center',
+    marginTop: 15,
+    borderColor: '#fee166',
+    borderWidth: 2,
+    borderRadius: 15
   }
 });

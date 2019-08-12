@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import {
   View,
   Text,
@@ -7,15 +8,14 @@ import {
   Button,
   Dimensions
 } from 'react-native';
-
 import { AirbnbRating } from 'react-native-ratings';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import * as GymsActions from '~/store/actions/gym';
 
 export default function GymList({ item, navigation }) {
-  handleNavigate = item => {
+  const dispatch = useDispatch();
+
+  handleToggleGym = item => {
     navigation.navigate('Activities');
     dispatch(GymsActions.toggleGym(item));
   };
@@ -42,11 +42,13 @@ export default function GymList({ item, navigation }) {
             showRating
           />
         </View>
-        <Button
-          title="Atividades"
-          color="#48285b"
-          onPress={() => this.handleNavigate(item)}
-        />
+        <View style={styles.button}>
+          <Button
+            title="Atividades"
+            color="#48285b"
+            onPress={() => handleToggleGym(item)}
+          />
+        </View>
       </View>
     </View>
   );
@@ -88,5 +90,13 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     fontSize: 22,
     textAlign: 'center'
+  },
+
+  button: {
+    alignSelf: 'center',
+    marginTop: 15,
+    borderColor: '#48285b',
+    borderWidth: 2,
+    borderRadius: 15
   }
 });

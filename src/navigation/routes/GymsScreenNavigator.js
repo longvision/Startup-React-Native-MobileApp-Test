@@ -4,7 +4,6 @@ import Gyms from '~/pages/Gyms';
 import Activities from '~/modules/Activities';
 import Confirmation from '~/modules/Confirmation';
 import GymList from '~/components/GymList';
-import WorkoutsScreenNavigator from './WorkoutsScreenNavigator';
 
 const GymsScreenNavigator = createStackNavigator(
   {

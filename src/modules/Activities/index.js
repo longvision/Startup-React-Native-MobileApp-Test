@@ -1,59 +1,45 @@
-import React, { Component, useEffect, useState } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import * as ActivitiesActions from '~/store/actions/activity';
 
-// TODO: transform in function component
-class Activities extends Component {
-  static navigationOptions = {
-    title: 'Selecione a atividade desejada',
-    headerStyle: {
-      backgroundColor: '#48285b',
-      marginTop: 0
-    },
-    headerTintColor: '#fff'
+export default function Activities({ navigation }) {
+  const activities = useSelector(state => state.gym.selectedGym.activities);
+  const dispatch = useDispatch();
+
+  handleNavigate = activity => {
+    navigation.navigate('Confirmation', { navigation });
+    dispatch(ActivitiesActions.toggleActivity(activity));
   };
 
-  handleNavigate = selectedActivity => {
-    const { toggleActivity, navigation } = this.props;
-    navigation.navigate('Confirmation', { navigation });
-    toggleActivity(selectedActivity);
-  };
-  render() {
-    const { activities } = this.props;
-    return (
-      <View style={styles.container}>
-        {activities.map(activity => (
-          <View key={activity.id} style={styles.card}>
-            <Text style={styles.title}>{activity.title}</Text>
-            <TouchableOpacity
-              style={styles.icon}
-              onPress={() => this.handleNavigate(activity)}
-            >
-              <Icon name="event-busy" size={20} color="#f64c75" />
-            </TouchableOpacity>
-          </View>
-        ))}
-      </View>
-    );
-  }
+  return (
+    <View style={styles.container}>
+      {activities.map(activity => (
+        <View key={activity.id} style={styles.card}>
+          <Text style={styles.title}>{activity.title}</Text>
+          <TouchableOpacity
+            style={styles.icon}
+            onPress={() => this.handleNavigate(activity)}
+          >
+            <Icon name="whatshot" size={34} color="red" />
+          </TouchableOpacity>
+        </View>
+      ))}
+    </View>
+  );
 }
 
-const mapStateToProps = state => ({
-  activities: state.gym.selectedGym.activities
-});
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(ActivitiesActions, dispatch);
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Activities);
+Activities.navigationOptions = {
+  title: 'Selecione a atividade desejada',
+  headerStyle: {
+    backgroundColor: '#48285b',
+    marginTop: 0
+  },
+  headerTintColor: '#fff'
+};
 
 const styles = StyleSheet.create({
   container: {

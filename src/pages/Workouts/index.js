@@ -1,16 +1,16 @@
 import React from 'react';
-
 import { View, Text, FlatList, StyleSheet } from 'react-native';
-
 import { useSelector } from 'react-redux';
+
 import Workout from '~/modules/Workout';
 
 export default function Workouts() {
   const history = useSelector(state => state.activity.history);
-
+  //TODO: check if activity is already in the list.
+  //If it is, then dont list. If isnt, list.
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Agendamentos</Text>
+      <Text style={styles.title}>Histórico</Text>
       <FlatList
         style={styles.list}
         data={history}
@@ -22,7 +22,7 @@ export default function Workouts() {
 }
 
 Workouts.navigationOptions = {
-  title: 'Minhas atividades',
+  title: 'Meus Checkins',
   headerStyle: {
     backgroundColor: '#48285b',
     marginTop: 0
@@ -36,8 +36,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 0
   },
   list: {
-    marginTop: 15,
-    padding: 30
+    marginTop: 15
   },
   title: {
     fontSize: 20,

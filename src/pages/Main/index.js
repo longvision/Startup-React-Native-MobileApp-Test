@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-
 import {
   Text,
-  Image,
   StyleSheet,
   Dimensions,
   View,
-  StatusBar
+  StatusBar,
+  Linking
 } from 'react-native';
 
 export default class Main extends Component {
@@ -29,11 +28,22 @@ export default class Main extends Component {
 
         <Text style={styles.welcome}>Bem-vindo ao GympassApp!</Text>
         <Text style={styles.subtitle}>
-          Versão 1.0 para recrutamento de processo seletivo da GymPass.
+          Versão 1.0 do app desenvolvido para processo seletivo da GymPass.
         </Text>
 
-        <Text style={styles.subtitle}>
-          Esse App foi desenvolvido por Ricardo Naoki Horiguchi.
+        <Text style={styles.subtitle}>Esse App foi desenvolvido por:</Text>
+        <Text style={styles.author}>Ricardo Naoki Horiguchi.</Text>
+        <Text style={styles.details}>r.n.hori@gmail.com</Text>
+        <Text style={styles.details}>+55 11 95059-7909</Text>
+        <Text
+          style={[styles.linkedIn, { color: '#fff' }]}
+          onPress={() =>
+            Linking.openURL(
+              'https://www.linkedin.com/in/ricardo-naoki-horiguchi/'
+            )
+          }
+        >
+          LinkedIn
         </Text>
       </View>
     );
@@ -63,9 +73,30 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     color: '#DDD',
-    fontSize: 14,
-    marginTop: 20,
+    fontSize: 17,
+    marginTop: 50,
     textAlign: 'center'
+  },
+  author: {
+    fontSize: 22,
+    marginTop: 20,
+    textAlign: 'center',
+    fontWeight: '700',
+    color: '#fee166'
+  },
+  linkedIn: {
+    fontSize: 22,
+    marginTop: 10,
+    textAlign: 'center',
+    fontWeight: '700',
+    color: '#fee166'
+  },
+  details: {
+    fontSize: 14,
+    marginTop: 7,
+    textAlign: 'center',
+    fontWeight: '500',
+    color: '#fee166'
   },
   logo: {
     height: Dimensions.get('window').height * 0.15,
@@ -76,6 +107,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 22,
     fontWeight: 'bold',
-    textAlign: 'center'
+    textAlign: 'center',
+    marginTop: 50
   }
 });
