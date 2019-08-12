@@ -14,58 +14,43 @@ import { bindActionCreators } from 'redux';
 
 import * as GymsActions from '~/store/actions/gym';
 
-class GymList extends Component {
+export default function GymList({ item, navigation }) {
   handleNavigate = item => {
-    const { navigation, toggleGym } = this.props;
-
     navigation.navigate('Activities');
-    toggleGym(item);
+    dispatch(GymsActions.toggleGym(item));
   };
-  render() {
-    const { item } = this.props;
-    console.log(item);
-    return (
-      <View style={styles.container}>
-        <View style={styles.card}>
-          <Text style={styles.title}>{item.title}</Text>
-          <Image
-            source={{
-              uri: `${item.logo}`
-            }}
-            style={styles.logo}
-            resizeMode="contain"
-          />
-          <Text style={styles.address}>{item.address}</Text>
-          <View style={styles.rating}>
-            <AirbnbRating
-              count={5}
-              reviews={['Terrible', 'Bad', 'Ok', 'Good', 'Great']}
-              defaultRating={item.rating}
-              size={20}
-              isDisabled
-              showRating
-            />
-          </View>
-          <Button
-            title="Atividades"
-            color="#48285b"
-            onPress={() => this.handleNavigate(item)}
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.card}>
+        <Text style={styles.title}>{item.title}</Text>
+        <Image
+          source={{
+            uri: `${item.logo}`
+          }}
+          style={styles.logo}
+          resizeMode="contain"
+        />
+        <Text style={styles.address}>{item.address}</Text>
+        <View style={styles.rating}>
+          <AirbnbRating
+            count={5}
+            reviews={['Terrible', 'Bad', 'Ok', 'Good', 'Great']}
+            defaultRating={item.rating}
+            size={20}
+            isDisabled
+            showRating
           />
         </View>
+        <Button
+          title="Atividades"
+          color="#48285b"
+          onPress={() => this.handleNavigate(item)}
+        />
       </View>
-    );
-  }
+    </View>
+  );
 }
-
-const mapStateToProps = state => ({});
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(GymsActions, dispatch);
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(GymList);
 
 const styles = StyleSheet.create({
   logo: {

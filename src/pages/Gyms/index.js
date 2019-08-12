@@ -17,10 +17,13 @@ import api from '~/services/api';
 export default function Gyms({ navigation }) {
   const [gyms, setGyms] = useState([]);
 
-  useEffect(() => {
-    const response = api.get('/gyms/');
+  async function loadGyms() {
+    const response = await api.get('/gyms/');
     setGyms(response.data);
-    console.tron.log(response.data);
+  }
+
+  useEffect(() => {
+    loadGyms();
   }, []);
 
   return (

@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as ActivitiesActions from '~/store/actions/activity';
 
+// TODO: transform in function component
 class Activities extends Component {
   static navigationOptions = {
     title: 'Selecione a atividade desejada',
