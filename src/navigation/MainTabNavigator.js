@@ -26,7 +26,7 @@ const tabNavigator = createMaterialBottomTabNavigator(
     Workouts: {
       screen: WorkoutsScreenNavigator,
       navigationOptions: {
-        title: 'My Workouts',
+        title: 'Minhas Atividades',
         tabBarIcon: ({ focused }) => (
           <Icon
             name={'checkbox-marked-outline'}
@@ -51,14 +51,12 @@ const tabNavigator = createMaterialBottomTabNavigator(
     }
   },
   {
-    initialRouteName: 'Gyms',
-    shifting: true,
+    shifting: false,
     activeColor: '#fee166',
     inactiveColor: '#c4c4c4',
     barStyle: {
       backgroundColor: '#48285b'
-    },
-    tabBarColor: '#fee166'
+    }
   }
 );
 

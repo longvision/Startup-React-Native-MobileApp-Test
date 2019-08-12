@@ -27,18 +27,18 @@ export default class Gyms extends Component {
     gyms: []
   };
 
-  async componentDidMount() {
+  componentDidMount = async () => {
     const { gyms } = this.state;
     const response = await api.get('/gyms/');
     this.setState({ gyms: response.data });
     console.log(gyms);
-  }
+  };
 
   render() {
     const { gyms } = this.state;
     console.log(this.state.gyms);
     return (
-      <View>
+      <View style={styles.container}>
         <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
         <FlatList
           style={styles.lista}
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     flex: 1,
-    paddingHorizontal: 20
+    paddingHorizontal: 0
   },
   lista: { marginTop: 20 },
   button: {

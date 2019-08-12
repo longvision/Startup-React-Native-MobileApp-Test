@@ -1,13 +1,12 @@
 import {
   LOAD_ACTIVITY_REQUEST,
   LOAD_ACTIVITY_SUCCESS,
-  TOGGLE_ACTIVITY
+  TOGGLE_ACTIVITY,
+  ADD_ACTIVITY
 } from '../actions/activity';
 
 const INITIAL_STATE = {
-  data: [],
-  loading: false,
-  selectedActivity: {}
+  history: []
 };
 
 export default function activity(state = INITIAL_STATE, action) {
@@ -17,6 +16,23 @@ export default function activity(state = INITIAL_STATE, action) {
         ...state,
         selectedActivity: action.payload.activity
       };
+
+    case ADD_ACTIVITY: {
+      return {
+        ...state,
+        history: [
+          ...state.history,
+          {
+            activity: {
+              description: action.payload.activity,
+              checkin: action.payload.response
+            },
+            gym: action.payload.gym
+          }
+        ]
+      };
+    }
+
     case LOAD_ACTIVITY_REQUEST:
       return { ...state, loading: true };
     case LOAD_ACTIVITY_SUCCESS:

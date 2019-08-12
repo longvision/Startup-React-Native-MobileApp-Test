@@ -14,13 +14,7 @@ import { bindActionCreators } from 'redux';
 
 import * as GymsActions from '~/store/actions/gym';
 
-// import { bindActionCreators } from 'redux';
-// import { connect } from 'react-redux';
-
-// import { Container } from './styles';
-
 class GymList extends Component {
-  componentDidMount() {}
   handleNavigate = item => {
     const { navigation, toggleGym } = this.props;
 
@@ -29,7 +23,7 @@ class GymList extends Component {
   };
   render() {
     const { item } = this.props;
-
+    console.log(item);
     return (
       <View style={styles.container}>
         <View style={styles.card}>

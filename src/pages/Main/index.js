@@ -26,14 +26,7 @@ export default class Main extends Component {
     return (
       <View>
         <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
-        <Image
-          source={{
-            uri:
-              'https://dtda4cv2md3ne.cloudfront.net/image/filename/281513/Novo_logo_GP.png'
-          }}
-          style={styles.logo}
-          resizeMode="contain"
-        />
+
         <Text style={styles.welcome}>Bem-vindo ao GympassApp!</Text>
         <Text style={styles.subtitle}>
           Versão 1.0 para recrutamento de processo seletivo da GymPass.
