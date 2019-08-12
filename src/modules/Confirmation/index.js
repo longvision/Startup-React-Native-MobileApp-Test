@@ -8,6 +8,8 @@ import pt from 'date-fns/locale/pt';
 import api from '~/services/api';
 
 import * as ActivityActions from '~/store/actions/activity';
+import { BottomNavigation } from 'react-native-paper';
+import reducers from '~/store/reducers';
 
 export default function Confirm({ navigation }) {
   const gym = useSelector(state => state.gym.selectedGym);
@@ -22,11 +24,11 @@ export default function Confirm({ navigation }) {
     () => format(new Date(response.checkinDate), 'MM/DD/YYYY, hh:mm'),
     [response.checkinDate]
   );
-
-  const handleConfirm = useCallback(async () => {
+  //TODO: fazer com que ao clicar em 'Confirmar' a response do POST também seja gravado no reducers.
+  const handleConfirm = useCallback(() => {
     setConfirm(true);
-    await dispatch(ActivityActions.addActivity(activity, gym, response));
-  }, [activity, gym, response]);
+    dispatch(ActivityActions.addActivity(activity, gym, response));
+  }, [gym, activity, response.checkinDate, response.checkinStatus]);
 
   const handleOk = useCallback(() => {
     navigation.navigate('Workouts');
