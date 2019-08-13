@@ -14,7 +14,7 @@ export default function Workout({ data }) {
         <View style={styles.info}>
           <Text style={styles.gym}>{data.gym.title.substring(0, 32)}</Text>
           <Text style={styles.checkinStatus}>
-            {data.activity.checkinStatus !== null && 'Scheduled'}
+            {data.activity.checkinStatus !== null && 'Activity Done'}
           </Text>
           <Text style={styles.activity}>{data.activity.description.title}</Text>
           <Text style={styles.time}>{dateFormatted}</Text>

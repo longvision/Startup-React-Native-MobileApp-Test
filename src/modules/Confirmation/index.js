@@ -10,9 +10,18 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 export default function Confirmation({ navigation }) {
   const gym = useSelector(state => state.gym.selectedGym);
   const activity = useSelector(state => state.activity.selectedActivity);
+  const history = useSelector(state => state.history);
 
   const [confirm, setConfirm] = useState(false);
   const [response, setResponse] = useState({});
+
+  // TODO:Check below code
+  const canDispatch = useCallback(() => {
+    const duplicated = history.map(i => {
+      i.activity.description.id === activity.id && false;
+    });
+    (history === [] || !duplicated) && true;
+  }, []);
 
   const dispatch = useDispatch();
 
@@ -38,14 +47,16 @@ export default function Confirmation({ navigation }) {
         })
         .then(async res => {
           setResponse(res.data);
-          dispatch(
-            ActivityActions.addActivity(
-              activity,
-              gym,
-              res.data.checkinStatus,
-              res.data.checkinDate
-            )
-          );
+          //TODO: checkbelow code
+          if (canDispatch)
+            dispatch(
+              ActivityActions.addActivity(
+                activity,
+                gym,
+                res.data.checkinStatus,
+                res.data.checkinDate
+              )
+            );
         });
     }
   }, [confirm]);
@@ -54,22 +65,23 @@ export default function Confirmation({ navigation }) {
     <View style={styles.container}>
       <Image style={styles.logo} source={{ uri: gym.logo }} />
       <Text style={styles.title}>{activity.title}</Text>
-      <Text style={styles.checkin}>{response.checkinStatus}</Text>
-      {response.checkinDate === undefined ? null : (
-        <Text style={styles.checkin}>{dateFormatted}</Text>
-      )}
-
+      <View style={styles.statusView}>
+        <Text style={styles.checkin}>{response.checkinStatus}</Text>
+        {response.checkinDate === undefined ? null : (
+          <Text style={styles.checkin}>{dateFormatted}</Text>
+        )}
+      </View>
       {!confirm ? (
         <View style={styles.button}>
           <Button
             onPress={handleConfirm}
-            color="#fee166"
+            color="#48285b"
             title="Fazer checkin"
           />
         </View>
       ) : (
         <View style={styles.button}>
-          <Button onPress={handleOk} color="#fee166" title="OK" />
+          <Button onPress={handleOk} color="#48285b" title="OK" />
         </View>
       )}
     </View>
@@ -90,29 +102,39 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingBottom: 30,
-    flex: 1
+    flex: 1,
+    backgroundColor: '#fff'
   },
   logo: {
-    width: 120,
-    height: 120,
-    borderRadius: 60
+    width: 175,
+    height: 175,
+    borderRadius: 100,
+    padding: 10,
+    marginBottom: 100
   },
   title: {
     marginTop: 10,
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#fff'
+    color: '#48285b'
+  },
+  statusView: {
+    margin: 25,
+    height: 60
   },
   checkin: {
-    marginTop: 4,
-    fontSize: 18,
-    color: '#fee166'
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#199',
+    alignContent: 'center'
   },
   button: {
     alignSelf: 'center',
-    marginTop: 15,
-    borderColor: '#fee166',
-    borderWidth: 2,
+    marginTop: 25,
+    borderColor: '#48285b',
+    backgroundColor: '#fee166',
+    minWidth: 140,
+    borderWidth: 3,
     borderRadius: 15
   }
 });

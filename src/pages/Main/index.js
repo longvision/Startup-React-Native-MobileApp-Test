@@ -66,13 +66,13 @@ const styles = StyleSheet.create({
     marginTop: 5
   },
   instructions: {
-    color: '#DDD',
+    color: '#eee',
     fontSize: 14,
     marginTop: 20,
     textAlign: 'center'
   },
   subtitle: {
-    color: '#DDD',
+    color: '#fff',
     fontSize: 17,
     marginTop: 50,
     textAlign: 'center'

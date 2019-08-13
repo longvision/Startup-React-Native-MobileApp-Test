@@ -10,6 +10,8 @@ import {
 import GymList from '~/components/GymList';
 import api from '~/services/api';
 
+console.disableYellowBox = true;
+
 export default function Gyms({ navigation }) {
   const [gyms, setGyms] = useState([]);
 

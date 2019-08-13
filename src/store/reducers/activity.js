@@ -5,6 +5,8 @@ import {
   ADD_ACTIVITY
 } from '~/store/actions/activity';
 
+import produce from 'immer';
+
 const INITIAL_STATE = {
   history: []
 };
@@ -17,7 +19,7 @@ export default function activity(state = INITIAL_STATE, action) {
         selectedActivity: action.payload.selectedActivity
       };
 
-    case ADD_ACTIVITY: {
+    case ADD_ACTIVITY:
       return {
         ...state,
         history: [
@@ -32,7 +34,6 @@ export default function activity(state = INITIAL_STATE, action) {
           }
         ]
       };
-    }
 
     case LOAD_ACTIVITY_REQUEST:
       return { ...state, loading: true };

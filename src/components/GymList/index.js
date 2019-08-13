@@ -94,9 +94,11 @@ const styles = StyleSheet.create({
 
   button: {
     alignSelf: 'center',
-    marginTop: 15,
+    marginTop: 25,
     borderColor: '#48285b',
-    borderWidth: 2,
+    backgroundColor: '#fee166',
+    minWidth: 140,
+    borderWidth: 3,
     borderRadius: 15
   }
 });
