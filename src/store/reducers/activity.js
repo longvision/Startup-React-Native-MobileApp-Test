@@ -1,11 +1,4 @@
-import {
-  LOAD_ACTIVITY_REQUEST,
-  LOAD_ACTIVITY_SUCCESS,
-  TOGGLE_ACTIVITY,
-  ADD_ACTIVITY
-} from '~/store/actions/activity';
-
-import produce from 'immer';
+import { TOGGLE_ACTIVITY, ADD_ACTIVITY } from '~/store/actions/activity';
 
 const INITIAL_STATE = {
   history: []
@@ -35,10 +28,6 @@ export default function activity(state = INITIAL_STATE, action) {
         ]
       };
 
-    case LOAD_ACTIVITY_REQUEST:
-      return { ...state, loading: true };
-    case LOAD_ACTIVITY_SUCCESS:
-      return { ...state, data: action.payload.data, loading: false };
     default:
       return state;
   }

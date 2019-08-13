@@ -5,66 +5,93 @@ import { format } from 'date-fns';
 
 import api from '~/services/api';
 import * as ActivityActions from '~/store/actions/activity';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
+//Inicio do componente
 export default function Confirmation({ navigation }) {
+  //Estados provenientes da Store:
   const gym = useSelector(state => state.gym.selectedGym);
-  const activity = useSelector(state => state.activity.selectedActivity);
-  const history = useSelector(state => state.history);
-
+  const selectedActivity = useSelector(
+    state => state.activity.selectedActivity
+  );
+  const history = useSelector(state => state.activity.history);
+  //Estados locais:
   const [confirm, setConfirm] = useState(false);
   const [response, setResponse] = useState({});
+  const [duplicatedId, setDuplicatedId] = useState(false);
+  const [duplicatedDay, setDuplicatedDay] = useState(false);
 
-  // TODO:Check below code
-  const canDispatch = useCallback(() => {
-    const duplicated = history.map(i => {
-      i.activity.description.id === activity.id && false;
+  //Verifica se usuário já fez check in no mesmo dia('componentDidMount')
+  useEffect(() => {
+    history.filter(item => {
+      format(new Date(item.activity.checkinDate), 'MM/DD/YYYY') ===
+      format(new Date(response.checkinDate), 'MM/DD/YYYY')
+        ? setDuplicatedDay(true)
+        : setDuplicatedDay(false);
     });
-    (history === [] || !duplicated) && true;
   }, []);
 
+  // Verifica se o usuário já fez check in na mesma atividade.('componentDidMount')
+  useEffect(() => {
+    if (history !== undefined) {
+      history.filter(item => {
+        item.activity.description.id === selectedActivity.id
+          ? setDuplicatedId(true)
+          : setDuplicatedId(false);
+      });
+    }
+  }, []);
+
+  //Dispara a ação para o Reducer
   const dispatch = useDispatch();
 
+  // Formata a hora da atividade cadatrada para o usuário poder vê-la
   const dateFormatted = useMemo(
     () => format(new Date(response.checkinDate), 'MM/DD/YYYY, hh:mm'),
     [response.checkinDate]
   );
-
+  //Caso o usuário confirme, dispara o Hook abaixo;
   const handleConfirm = useCallback(() => {
     setConfirm(true);
   }, [confirm]);
 
-  const handleOk = useCallback(() => {
-    navigation.navigate('Workouts');
-  }, []);
-
+  //Hook onde o usuário faz o checkIn caso a atividade não seja duplicada nem
+  //tenha sido feita no mesmo dia.
   useEffect(() => {
     if (confirm === true) {
       api
-        .post(`/checkin?gymId=${gym.id}&activityId=${activity.id}`, {
+        .post(`/checkin?gymId=${gym.id}&activityId=${selectedActivity.id}`, {
           gymId: gym.id,
-          activityId: activity.id
+          activityId: selectedActivity.id
         })
         .then(async res => {
           setResponse(res.data);
           //TODO: checkbelow code
-          if (canDispatch)
+
+          if (duplicatedId === false && duplicatedDay === false) {
             dispatch(
               ActivityActions.addActivity(
-                activity,
+                selectedActivity,
                 gym,
                 res.data.checkinStatus,
                 res.data.checkinDate
               )
             );
+          }
         });
     }
   }, [confirm]);
 
+  //Ao confirmar OK, o usuário é direcionado para a tela de Workouts, com os
+  //seus check ins listados.
+  const handleOk = useCallback(() => {
+    navigation.navigate('Workouts');
+  }, []);
+
+  //Estrutura do componente
   return (
     <View style={styles.container}>
       <Image style={styles.logo} source={{ uri: gym.logo }} />
-      <Text style={styles.title}>{activity.title}</Text>
+      <Text style={styles.title}>{selectedActivity.title}</Text>
       <View style={styles.statusView}>
         <Text style={styles.checkin}>{response.checkinStatus}</Text>
         {response.checkinDate === undefined ? null : (
@@ -87,7 +114,7 @@ export default function Confirmation({ navigation }) {
     </View>
   );
 }
-
+//Barra superior de navegação do componente
 Confirmation.navigationOptions = () => ({
   title: 'Confirmar',
   headerStyle: {
@@ -97,6 +124,7 @@ Confirmation.navigationOptions = () => ({
   headerTintColor: '#fff'
 });
 
+//Estilização do componente
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
@@ -108,7 +136,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 175,
     height: 175,
-    borderRadius: 100,
+
     padding: 10,
     marginBottom: 100
   },

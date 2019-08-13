@@ -1,4 +1,4 @@
-import { LOAD_GYM_REQUEST, LOAD_GYM_SUCCESS, TOGGLE_GYM } from '../actions/gym';
+import { TOGGLE_GYM } from '../actions/gym';
 
 const INITIAL_STATE = {
   data: [],
@@ -13,10 +13,7 @@ export default function gym(state = INITIAL_STATE, action) {
         ...state,
         selectedGym: action.payload.gym
       };
-    case LOAD_GYM_REQUEST:
-      return { ...state, loading: true };
-    case LOAD_GYM_SUCCESS:
-      return { ...state, data: action.payload.data, loading: false };
+
     default:
       return state;
   }

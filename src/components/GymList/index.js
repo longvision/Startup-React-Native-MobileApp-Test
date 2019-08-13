@@ -12,14 +12,17 @@ import { AirbnbRating } from 'react-native-ratings';
 
 import * as GymsActions from '~/store/actions/gym';
 
+//Inicio do componente
 export default function GymList({ item, navigation }) {
   const dispatch = useDispatch();
 
+  //Navegação para tela 'Activities' e disparo de ação para ativar a academia
+  //selecionada, enviando a seleção para o reducer da store.
   handleToggleGym = item => {
     navigation.navigate('Activities');
     dispatch(GymsActions.toggleGym(item));
   };
-
+  //Estrutura do componente
   return (
     <View style={styles.container}>
       <View style={styles.card}>
@@ -53,7 +56,7 @@ export default function GymList({ item, navigation }) {
     </View>
   );
 }
-
+//Estilização do componente
 const styles = StyleSheet.create({
   logo: {
     height: Dimensions.get('window').height * 0.2,

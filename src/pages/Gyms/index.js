@@ -12,18 +12,20 @@ import api from '~/services/api';
 
 console.disableYellowBox = true;
 
+//Inicio do componente
 export default function Gyms({ navigation }) {
+  //Estado local: gyms
   const [gyms, setGyms] = useState([]);
-
+  //Chama a api para carregar as lista de gyms
   async function loadGyms() {
     const response = await api.get('/gyms/');
     setGyms(response.data);
   }
-
+  //Hook semelhante ao 'componentDidMount', para carregar as gyms
   useEffect(() => {
     loadGyms();
   }, []);
-
+  //Estrutura do componente
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
@@ -38,7 +40,7 @@ export default function Gyms({ navigation }) {
     </View>
   );
 }
-
+//Barra de navegação superior
 Gyms.navigationOptions = {
   title: 'Academias',
   headerStyle: {
@@ -47,7 +49,7 @@ Gyms.navigationOptions = {
   },
   headerTintColor: '#fff'
 };
-
+//Estilização do componente
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',

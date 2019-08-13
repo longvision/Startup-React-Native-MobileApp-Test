@@ -7,7 +7,7 @@ import {
   StatusBar,
   Linking
 } from 'react-native';
-
+//Inicio do componente
 export default class Main extends Component {
   static navigationOptions = {
     title: 'Main',
@@ -17,10 +17,8 @@ export default class Main extends Component {
     },
     headerTintColor: '#fff'
   };
-  handleStart = async () => {
-    const { navigate } = this.props.navigation;
-    navigate('Gyms');
-  };
+
+  //Estrutura do componente
   render() {
     return (
       <View>
@@ -49,7 +47,7 @@ export default class Main extends Component {
     );
   }
 }
-
+//Estilo do componente
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',

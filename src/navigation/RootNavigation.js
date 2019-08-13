@@ -1,9 +1,8 @@
 import React from 'react';
 import TabNavigator from './MainTabNavigator';
-// import AuthNavigator from '~/modules/auth/AuthNavigator';
-// import FocusNavigator from '~/modules/auth/FocusNavigator';
-// import { connect } from 'react-redux';
 
+//Navegador principal simplificado pois autenticação não está habilitada.
+//Seria importante caso usuário precisasse fazer login para ver certas telas.
 export default class RootNavigation extends React.Component {
   render() {
     return <TabNavigator />;

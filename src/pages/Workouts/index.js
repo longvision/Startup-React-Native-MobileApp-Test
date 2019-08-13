@@ -3,11 +3,11 @@ import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import Workout from '~/modules/Workout';
-
+//Inicio do componente
 export default function Workouts() {
+  //Estado proveniente da Store
   const history = useSelector(state => state.activity.history);
-  //TODO: check if activity is already in the list.
-  //If it is, then dont list. If isnt, list.
+  //Estrutura do componente
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Histórico</Text>
@@ -20,7 +20,7 @@ export default function Workouts() {
     </View>
   );
 }
-
+//Barra de navegação superior do componente
 Workouts.navigationOptions = {
   title: 'Meus Checkins',
   headerStyle: {
@@ -29,6 +29,7 @@ Workouts.navigationOptions = {
   },
   headerTintColor: '#fff'
 };
+//Estilização do componente
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',

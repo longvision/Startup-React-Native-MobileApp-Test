@@ -2,19 +2,22 @@ import React, { useMemo } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { format } from 'date-fns';
 
+//Inicio do componente
 export default function Workout({ data }) {
   const dateFormatted = useMemo(
     () => format(new Date(data.activity.checkinDate), 'MM/DD/YYYY, hh:mm'),
     [data.activity.checkinDate]
   );
+  //Estrutura do componente filho
   return (
     <View style={styles.container}>
       <View style={styles.left}>
         <Image source={{ uri: data.gym.logo }} style={styles.logo} />
+
         <View style={styles.info}>
-          <Text style={styles.gym}>{data.gym.title.substring(0, 32)}</Text>
+          <Text style={styles.gym}>{data.gym.title}</Text>
           <Text style={styles.checkinStatus}>
-            {data.activity.checkinStatus !== null && 'Activity Done'}
+            {data.activity.checkinStatus !== null && 'Checkin Done'}
           </Text>
           <Text style={styles.activity}>{data.activity.description.title}</Text>
           <Text style={styles.time}>{dateFormatted}</Text>
@@ -23,7 +26,7 @@ export default function Workout({ data }) {
     </View>
   );
 }
-
+//Estilização do componente
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
@@ -42,10 +45,10 @@ const styles = StyleSheet.create({
     display: 'flex'
   },
   logo: {
-    width: 50,
-    height: 50,
-    borderRadius: 25
+    width: 60,
+    height: 60
   },
+
   info: {
     marginLeft: 15,
     width: 220
@@ -59,12 +62,14 @@ const styles = StyleSheet.create({
   checkinStatus: {
     fontSize: 13,
     marginTop: 4,
-    color: '#999'
+    color: '#408',
+    fontWeight: '500'
   },
   activity: {
-    fontSize: 13,
+    fontSize: 20,
     marginTop: 4,
-    color: '#999'
+    color: '#408',
+    fontWeight: '500'
   },
   time: {
     fontSize: 13,

@@ -6,15 +6,18 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import * as ActivitiesActions from '~/store/actions/activity';
 
+//Inicio do componente
 export default function Activities({ navigation }) {
   const activities = useSelector(state => state.gym.selectedGym.activities);
   const dispatch = useDispatch();
 
+  //Navegação e disparo de ação para selecionar a atividade desejada e enviar ao reducer.
   handleNavigate = activity => {
     navigation.navigate('Confirmation', { navigation });
     dispatch(ActivitiesActions.toggleActivity(activity));
   };
 
+  //Estrutura do componente
   return (
     <View style={styles.container}>
       {activities.map(activity => (
@@ -32,6 +35,7 @@ export default function Activities({ navigation }) {
   );
 }
 
+//Barra de navegação superior
 Activities.navigationOptions = {
   title: 'Selecione a atividade desejada',
   headerStyle: {
@@ -41,6 +45,7 @@ Activities.navigationOptions = {
   headerTintColor: '#fff'
 };
 
+//Estilização do componente
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',

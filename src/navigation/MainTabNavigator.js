@@ -8,6 +8,7 @@ import GymsScreenNavigator from '~/navigation/routes/GymsScreenNavigator';
 import MainScreenNavigator from '~/navigation/routes/MainScreenNavigator';
 import WorkoutsScreenNavigator from '~/navigation/routes/WorkoutsScreenNavigator';
 
+//3 Tabs principais da aplicação:
 const tabNavigator = createMaterialBottomTabNavigator(
   {
     Gyms: {

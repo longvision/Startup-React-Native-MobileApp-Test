@@ -7,8 +7,7 @@ import store from '~/store';
 
 import RootNavigation from '~/navigation/RootNavigation';
 
-console.disableYellowBox = true;
-
+//Tema central da estilização do React-Native Paper
 const theme = {
   ...DefaultTheme,
   colors: {
@@ -18,6 +17,7 @@ const theme = {
   }
 };
 
+//Ponto de entrada da aplicação
 export default class App extends React.Component {
   render() {
     return (

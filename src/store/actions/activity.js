@@ -1,6 +1,3 @@
-// ActionTypes
-export const SET_ACTIVITY_REQUEST = 'SET_ACTIVITY_REQUEST';
-export const SET_ACTIVITY_SUCCESS = 'SET_ACTIVITY_SUCCESS';
 export const TOGGLE_ACTIVITY = 'TOGGLE_ACTIVITY';
 export const ADD_ACTIVITY = 'ADD_ACTIVITY';
 
@@ -16,14 +13,4 @@ export const toggleActivity = selectedActivity => ({
 export const addActivity = (activity, gym, status, date) => ({
   type: 'ADD_ACTIVITY',
   payload: { activity, gym, status, date }
-});
-
-export const loadActivityRequest = activity => ({
-  type: 'SET_ACTIVITY_REQUEST',
-  payload: { activity, activityId }
-});
-
-export const loadActivitySuccess = data => ({
-  type: 'SET_ACTIVITY_SUCCESS',
-  payload: { data }
 });
