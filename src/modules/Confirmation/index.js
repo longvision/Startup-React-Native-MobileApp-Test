@@ -92,12 +92,25 @@ export default function Confirmation({ navigation }) {
     <View style={styles.container}>
       <Image style={styles.logo} source={{ uri: gym.logo }} />
       <Text style={styles.title}>{selectedActivity.title}</Text>
-      <View style={styles.statusView}>
-        <Text style={styles.checkin}>{response.checkinStatus}</Text>
-        {response.checkinDate === undefined ? null : (
-          <Text style={styles.checkin}>{dateFormatted}</Text>
-        )}
-      </View>
+      {duplicatedId === false && duplicatedDay === false ? (
+        <View style={styles.statusView}>
+          <Text style={styles.checkin}>{response.checkinStatus}</Text>
+          {response.checkinDate === undefined ? null : (
+            <Text style={styles.checkin}>{dateFormatted}</Text>
+          )}
+        </View>
+      ) : (
+        <View style={styles.statusView}>
+          <Text style={styles.checkin}>
+            O checkin desta atividade já foi feito hoje.
+          </Text>
+          {response.checkinDate === undefined ? null : (
+            <Text style={styles.checkin}>
+              Aguarde até amanhã ou escolha outra atividade.
+            </Text>
+          )}
+        </View>
+      )}
       {!confirm ? (
         <View style={styles.button}>
           <Button
