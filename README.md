@@ -7,19 +7,23 @@
   <h4 align="center">O aplicativo lista as academias, mostra as atividades de cada academia e permite que o usuário faça checkin em mais de uma atividade, desde que essa não seja a mesma no mesmo dia.</h4>
 </p>
 
-
-
-
 ## Screens:
 
 - [Desenvolvedor](https://longvision.s3.amazonaws.com/screen1.png)
+- <img src="https://longvision.s3.amazonaws.com/screen1.png">
 - [My Agenda](https://longvision.s3.amazonaws.com/screen2.png)
+- <img src="https://longvision.s3.amazonaws.com/screen2.png">
 - [Schedule](https://longvision.s3.amazonaws.com/screen3.png)
+- <img src="https://longvision.s3.amazonaws.com/screen3.png">
 - [Activities](https://longvision.s3.amazonaws.com/screen4.png)
+- <img src="https://longvision.s3.amazonaws.com/screen4.png">
 - [Gyms](https://longvision.s3.amazonaws.com/screen5.png)
+- <img src="https://longvision.s3.amazonaws.com/screen5.png">
 
 <!-- TABLE OF CONTENTS -->
+
 ## Tabela de Conteúdo
+
 - [Screens:](#screens)
 - [Tabela de Conteúdo](#tabela-de-conte%c3%bado)
 - [Sobre o Projeto](#sobre-o-projeto)
@@ -61,7 +65,7 @@ Abaixo segue alguns pacotes e libs que foram utilizados na criação deste proje
   - [eslint-plugin-react-native](https://github.com/Intellicode/eslint-plugin-react-native) - Regras de linting do ESLint específicas do React Native;
   - [eslint-import-resolver-babel-plugin-root-import](https://github.com/olalonde/eslint-import-resolver-babel-root-import) - Um resolver da lib _babel-root-import_ para a lib _eslint-plugin-import_;
 - [EditorConfig](https://editorconfig.org/) - O EditorConfig é um formatador de arquivos e coleções em forma de Plugin para Editores de código/texto com o objetivo de manter um padrão de código consistente entre diferentes editores, IDE's ou ambientes;
--Entre outas
+  -Entre outas
 
 <!-- GETTING STARTED -->
 
@@ -75,7 +79,6 @@ Antes de seguirmos para as configurações e uso do projeto, é ideal que você 
 
 [Ambiente React Native (Android/iOS)](https://github.com/Rocketseat/ambiente-react-native)
 
-
 ### Instalação
 
 1. Para instalar e utilizar esse projeto o processo é bem simples, basta digitar um dos comandos abaixo no terminal:
@@ -83,11 +86,12 @@ Antes de seguirmos para as configurações e uso do projeto, é ideal que você 
 ```sh
 yarn install
 ```
+
 ou
+
 ```sh
 npm install
 ```
-
 
 1. Com isso o projeto será criado com todas as dependências do projeto devidamente instaladas e linkadas, tal como os arquivos de configuração que são copiados para o projeto.
 
@@ -128,6 +132,7 @@ public class MainActivity extends ReactActivity {
 ## Para rodar a aplicação:
 
 É preciso ter instalado o Xcode ou o android studio para que possa fazer o build do app.
+
 1. Faça o build com o seguinte comando abaixo para criar o app no Xcode (iOS):
 
 ```sh
@@ -139,15 +144,19 @@ ou utilize o comando abaixo para rodar no simulador do Android (Android Studio):
 ```sh
 react-native run-android
 ```
+
 2. Rode a aplicação utilizando o comando abaixo:
 
 ```sh
 yarn start
 ```
+
 ou
+
 ```sh
 npm start
 ```
+
 ## Dúvidas e Contato
 
 Ricardo Naoki Horiguchi - [Github](https://github.com/longvision) - **r.n.hori@gmail.com**
