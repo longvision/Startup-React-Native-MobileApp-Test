@@ -12,11 +12,11 @@
 
 ## Screens:
 
-- [Desenvolvedor](https://github.com/longvision/Startup-React-Native-MobileApp-Test/src/assets/screen1.png)
-- [My Agenda](https://github.com/longvision/Startup-React-Native-MobileApp-Test/src/assets/screen2.png)
-- [Schedule](https://github.com/longvision/Startup-React-Native-MobileApp-Test/src/assets/screen3.png)
-- [Activities](https://github.com/longvision/Startup-React-Native-MobileApp-Test/src/assets/screen4.png)
-- [Gyms](https://github.com/longvision/Startup-React-Native-MobileApp-Test/src/assets/screen5.png)
+- [Desenvolvedor](https://longvision.s3.amazonaws.com/screen1.png)
+- [My Agenda](https://longvision.s3.amazonaws.com/screen2.png)
+- [Schedule](https://longvision.s3.amazonaws.com/screen3.png)
+- [Activities](https://longvision.s3.amazonaws.com/screen4.png)
+- [Gyms](https://longvision.s3.amazonaws.com/screen5.png)
 
 <!-- TABLE OF CONTENTS -->
 ## Tabela de Conteúdo
