@@ -7,10 +7,20 @@
   <h4 align="center">O aplicativo lista as academias, mostra as atividades de cada academia e permite que o usuário faça checkin em mais de uma atividade, desde que essa não seja a mesma no mesmo dia.</h4>
 </p>
 
+
+
+
+## Screens:
+
+- [Desenvolvedor](https://github.com/longvision/Startup-React-Native-MobileApp-Test/src/assets/screen1.png)
+- [My Agenda](https://github.com/longvision/Startup-React-Native-MobileApp-Test/src/assets/screen2.png)
+- [Schedule](https://github.com/longvision/Startup-React-Native-MobileApp-Test/src/assets/screen3.png)
+- [Activities](https://github.com/longvision/Startup-React-Native-MobileApp-Test/src/assets/screen4.png)
+- [Gyms](https://github.com/longvision/Startup-React-Native-MobileApp-Test/src/assets/screen5.png)
+
 <!-- TABLE OF CONTENTS -->
-
 ## Tabela de Conteúdo
-
+- [Screens:](#screens)
 - [Tabela de Conteúdo](#tabela-de-conte%c3%bado)
 - [Sobre o Projeto](#sobre-o-projeto)
   - [Feito Com](#feito-com)
